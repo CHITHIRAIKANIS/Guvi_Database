@@ -1,0 +1,21 @@
+//creating database
+use integra;
+
+//creating collection
+db.createCollection("employees");
+
+//create document
+db.employees.insertmany([{name:'xxx',age : 23,city:'us',salary:20000},{name:'yyy',age:30,city:'india',salary:25000},{name:'zzz',age:24,city:'france',salary:30000}]);
+
+//read
+db.employees.find({});
+
+//update
+db.employees.updateOne({-id : objectId("12345")},{$set:{age:25}});
+
+//Aggregate pipeline
+db.employees.aggregate([{$group:{_id:"$city"}},{$sort:{_id:-1}}]);
+
+db.employees.aggregate([{$match:{salary:{$gt:25000}}},{$project:{_id:0,name:1,city:1}}]);
+
+db.employees.aggregate([{$sort:{salary:1}},{$project:{_id:0,name:1,salary:1}},{$limit:3}]);
