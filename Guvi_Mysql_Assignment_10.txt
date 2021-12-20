@@ -1,0 +1,57 @@
+mysql>create database guvi;
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| guvi               |
+| information_schema |
+| integra            |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (1.71 sec)
+
+
+mysql> use guvi
+Database changed
+mysql> create table emp(name varchar(30),acc_no varchar(30),primary key(acc_no));
+Query OK, 0 rows affected (4.68 sec)
+
+mysql>create table Employee(Emp_ID varchar(30), LastName varchar(30), FirstName varchar(20), City varchar(30), Email varchar(40),Salary int(50));
+
+mysql>insert into Employee values(1 ,'S','Kani','Kumbakonam','kani@1234',30000);
+mysql>insert into Employee values(2 ,'G','Dimple','Kovilpatti','dimple@1234',30000);
+mysql>insert into Employee values(3 ,'M','Bhavani','Kumbakonam','bhavani@12345',40000);
+mysql>insert into Employee values(4 ,'S','Della','Trichy ','della@gmail',50000);
+mysql>insert into Employee values(5 ,'G','Jim','Chennai ','jim@1234',50000);
+mysql>insert into Employee values(6 ,'S','Ragavan','Madurai','ragavan@1234',45000);
+mysql>insert into Employee values(7 ,'T','Maha','Pudhukottai','maha@gmail',35000);
+mysql>insert into Employee values(8 ,'K','Krishna','cuddalour ','krishna@123',50000);
+
+
+
+mysql> select * from Employee;
++--------+----------+-----------+-------------+---------------+--------+
+| Emp_ID | LastName | FirstName | City        | Email         | Salary |
++--------+----------+-----------+-------------+---------------+--------+
+|      1 | S        | Kani      | Kumbakonam  | kani@1234     | 30000  |
+|      2 | G        | Dimple    | Kovilpatti  | dimple@1234   | 30000  |
+|      3 | M        | Bhavani   | Trichy      | bhavani@12345 | 40000  |
+|      4 | S        | Della     | Chennai     | della@gmail   | 50000  |
+|      5 | G        | Jim       | Madurai     | jim@1234      | 50000  |
+|      6 | S        | Ragavan   | Kumbakonam  | ragavan@1234  | 45000  |
+|      7 | T        | Maha      | Pudhukottai | maha@gmail    | 35000  |
+|      8 | K        | Krishna   | cuddalour   | krishna@123   | 50000  |
++--------+----------+-----------+-------------+---------------+--------+
+
+mysql>SELECT DISTINCT FirstName AS Employee_Info 
+FROM Employee 
+WHERE City IN ('Kumbakonam','cuddalour') AND NOT IN ('Madurai')
+ OR 
+Salary BETWEEN 30000 AND 50000 LIKE 'K%' 
+ORDER BY FirstName ASC LIMIT 10;
