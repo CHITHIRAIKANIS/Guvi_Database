@@ -1,0 +1,139 @@
+mysql>create database guvi;
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| guvi               |
+| information_schema |
+| integra            |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+8 rows in set (1.71 sec)
+
+
+mysql> use guvi
+Database changed
+mysql> create table emp(name varchar(30),acc_no varchar(30),primary key(acc_no));
+Query OK, 0 rows affected (4.68 sec)
+
+mysql>create table Employee(Emp_ID varchar(30), LastName varchar(30), FirstName varchar(20), City varchar(30), Email varchar(40),Salary int(50));
+
+mysql>insert into Employee values(1 ,'S','Kani','Kumbakonam','kani@1234',30000);
+mysql>insert into Employee values(2 ,'G','Dimple','Kovilpatti','dimple@1234',30000);
+mysql>insert into Employee values(3 ,'M','Bhavani','Kumbakonam','bhavani@12345',40000);
+mysql>insert into Employee values(4 ,'S','Della','Trichy ','della@gmail',50000);
+mysql>insert into Employee values(5 ,'G','Jim','Chennai ','jim@1234',50000);
+mysql>insert into Employee values(6 ,'S','Ragavan','Madurai','ragavan@1234',45000);
+mysql>insert into Employee values(7 ,'T','Maha','Pudhukottai','maha@gmail',35000);
+mysql>insert into Employee values(8 ,'K','Krishna','cuddalour ','krishna@123',50000);
+
+
+
+mysql> select * from Employee;
++--------+----------+-----------+-------------+---------------+--------+
+| Emp_ID | LastName | FirstName | City        | Email         | Salary |
++--------+----------+-----------+-------------+---------------+--------+
+|      1 | S        | Kani      | Kumbakonam  | kani@1234     | 30000  |
+|      2 | G        | Dimple    | Kovilpatti  | dimple@1234   | 30000  |
+|      3 | M        | Bhavani   | Trichy      | bhavani@12345 | 40000  |
+|      4 | S        | Della     | Chennai     | della@gmail   | 50000  |
+|      5 | G        | Jim       | Madurai     | jim@1234      | 50000  |
+|      6 | S        | Ragavan   | Kumbakonam  | ragavan@1234  | 45000  |
+|      7 | T        | Maha      | Pudhukottai | maha@gmail    | 35000  |
+|      8 | K        | Krishna   | cuddalour   | krishna@123   | 50000  |
++--------+----------+-----------+-------------+---------------+--------+
+
+
+
+mysql> update employee set country_code = 1 where Emp_ID=1;
+Query OK, 0 rows affected (0.01 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> update employee set country_code = 2 where Emp_ID=2;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set country_code = 3 where Emp_ID=3;
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set country_code = 1 where Emp_ID=4;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> update employee set country_code = 4 where Emp_ID=5;
+Query OK, 1 row affected (0.08 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from  employee;
++--------+----------+-----------+-------------+---------------+--------+--------------+
+| Emp_ID | LastName | FirstName | City        | Email         | Salary | country_code |
++--------+----------+-----------+-------------+---------------+--------+--------------+
+|      1 | S        | Kani      | Kumbakonam  | kani@1234     | 30000  | 1            |
+|      2 | G        | Dimple    | Kovilpatti  | dimple@1234   | 30000  | 2            |
+|      3 | M        | Bhavani   | Trichy      | bhavani@12345 | 40000  | 3            |
+|      4 | S        | Della     | Chennai     | della@gmail   | 50000  | 1            |
+|      5 | G        | Jim       | Madurai     | jim@1234      | 50000  | 4            |
+|      6 | S        | Ragavan   | Kumbakonam  | ragavan@1234  | 45000  | 1            |
+|      7 | T        | Maha      | Pudhukottai | maha@gmail    | 35000  | 1            |
+|      8 | K        | Krishna   | cuddalour   | krishna@123   | 50000  | 1            |
++--------+----------+-----------+-------------+---------------+--------+--------------+
+8 rows in set (0.01 sec)
+
+mysql> alter table employee add country varchar(20);
+Query OK, 0 rows affected (1.96 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update employee set country = 'India' where Emp_ID=1;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set country = 'USA' where Emp_ID=2;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set country = 'Canada' where Emp_ID=3;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set country = 'India' where Emp_ID=4;
+Query OK, 1 row affected (0.18 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee set country = 'France' where Emp_ID=5;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from  employee;
++--------+----------+-----------+-------------+---------------+--------+--------------+---------+
+| Emp_ID | LastName | FirstName | City        | Email         | Salary | country_code | country |
++--------+----------+-----------+-------------+---------------+--------+--------------+---------+
+|      1 | S        | Kani      | Kumbakonam  | kani@1234     | 30000  | 1            | India   |
+|      2 | G        | Dimple    | Kovilpatti  | dimple@1234   | 30000  | 2            | USA     |
+|      3 | M        | Bhavani   | Trichy      | bhavani@12345 | 40000  | 3            | Canada  |
+|      4 | S        | Della     | Chennai     | della@gmail   | 50000  | 1            | India   |
+|      5 | G        | Jim       | Madurai     | jim@1234      | 50000  | 4            | France  |
+|      6 | S        | Ragavan   | Kumbakonam  | ragavan@1234  | 45000  | 1            | NULL    |
+|      7 | T        | Maha      | Pudhukottai | maha@gmail    | 35000  | 1            | NULL    |
+|      8 | K        | Krishna   | cuddalour   | krishna@123   | 50000  | 1            | NULL    |
++--------+----------+-----------+-------------+---------------+--------+--------------+---------+
+8 rows in set (0.01 sec)
+
+mysql> SELECT DISTINCT FirstName AS employee_name FROM employee WHERE country IN ('India') OR country NOT IN ('USA') OR country_code BETWEEN 0 AND 1 LIKE 'A%' ORDER BY FirstName ASC LIMIT 10;
++---------------+
+| employee_name |
++---------------+
+| Bhavani       |
+| Della         |
+| Jim           |
+| Kani          |
++---------------+
+4 rows in set (0.08 sec)
+
+mysql>
